@@ -27,7 +27,7 @@ $ command --option [argument]
 
 # Example usage 2
 $ command [filename]
-Contributing
+## Contributing
 [Explain how others can contribute to your project, whether through bug reports, feature requests, or pull requests. Provide guidelines for contributing and any specific processes or coding standards to follow.]
 
 Fork the repository.
