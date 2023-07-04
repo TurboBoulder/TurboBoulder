@@ -1,4 +1,4 @@
-#TURBO BOULDER
+# turbo boulder
 Turbo Boulder is an open-source project dedicated to accelerating your .NET web application development process. It offers a comprehensive boilerplate for .NET applications, including API support, local user handling, and self-signed certificates for development.
 
 The platform leverages Docker containers to provide a standardized and replicable development environment, encompassing all components, including databases. This streamlined approach simplifies the setup process, enabling developers to focus more on building their applications rather than dealing with configuration.
