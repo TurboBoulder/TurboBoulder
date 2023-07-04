@@ -1,6 +1,6 @@
-# PLORGG
-PLORGG, short for 'Platform for Orchestration and Graceful Generation', is a streamlined development environment crafted to expedite the setup and deployment of web applications. With an emphasis on precision and user-friendliness, PLORGG includes a comprehensive boilerplate for .NET web applications, complete with API support and built-in Docker containers for all elements, including databases.
+#TURBO BOULDER
+Turbo Boulder is an open-source project dedicated to accelerating your .NET web application development process. It offers a comprehensive boilerplate for .NET applications, including API support, local user handling, and self-signed certificates for development.
 
-This platform excels in user handling, offering local user management features and the provision of self-signed certificates for development. What sets PLORGG apart is its ability to cater to diverse platforms. For Linux users, installation is as easy as using 'apt-get', while Windows users can utilize a simple MSI download.
+The platform leverages Docker containers to provide a standardized and replicable development environment, encompassing all components, including databases. This streamlined approach simplifies the setup process, enabling developers to focus more on building their applications rather than dealing with configuration.
 
-The ultimate goal of PLORGG is to minimize the time developers spend on setting up their working environment and configuring their tools. By orchestrating the various tools and services required for web development into one harmonious, easy-to-use platform, PLORGG empowers developers to spend more time on creating, testing, and deploying their applications, thereby enabling graceful and efficient generation of web applications.
+Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' MSI, ensuring accessibility for developers on various operating systems. As an open-source project, Turbo Boulder thrives on community collaboration and welcomes contributions from developers worldwide.
