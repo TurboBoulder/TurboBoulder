@@ -38,9 +38,9 @@ Open a pull request.
 License
 [Specify the license under which your project is distributed. For example, MIT, Apache, or any other open-source license you prefer.]
 
-Acknowledgements
+## Acknowledgements
 [Optional section to acknowledge and thank any individuals, organizations, or resources that have contributed to the project or inspired its development.]
 
-Contact
+## Contact
 [Provide your contact information, such as your email or any other means for users or contributors to reach out to you with questions, feedback, or inquiries.]
 
