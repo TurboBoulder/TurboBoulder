@@ -29,7 +29,7 @@ $ command --option [argument]
 $ command [filename]
 
 ## Contributing
-Contributing
+
 Hello! Thanks for your interest in contributing to this project! We value your effort and time and are always excited to see community participation. We believe that every contribution, be it in the form of code, bug reports, or feature requests, can significantly enhance the project and benefit all users.
 
 Newbie Alert
