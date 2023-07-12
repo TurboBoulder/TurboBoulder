@@ -107,10 +107,3 @@ This project is licensed under the terms of the MIT license.
 
 For the full license text, please see the [LICENSE](LICENSE) file in the project root.
 
-
-## Acknowledgements
-[Optional section to acknowledge and thank any individuals, organizations, or resources that have contributed to the project or inspired its development.]
-
-## Contact
-[Provide your contact information, such as your email or any other means for users or contributors to reach out to you with questions, feedback, or inquiries.]
-
