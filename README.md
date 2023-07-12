@@ -103,7 +103,10 @@ We strive to foster an open and welcoming environment. Please follow our Code of
 Thank you again for considering contributing to this project! Every bit of help makes a difference, and your patience and understanding are greatly appreciated as I learn the ropes of this exciting journey.
 
 ## License
-[Specify the license under which your project is distributed. For example, MIT, Apache, or any other open-source license you prefer.]
+This project is licensed under the terms of the MIT license.
+
+For the full license text, please see the [LICENSE](LICENSE) file in the project root.
+
 
 ## Acknowledgements
 [Optional section to acknowledge and thank any individuals, organizations, or resources that have contributed to the project or inspired its development.]
