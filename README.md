@@ -11,11 +11,12 @@ Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' M
 [Feature 3]: [Description of feature 3]
 ...
 ## Installation
-[Provide step-by-step instructions on how to install and set up your project. Include any prerequisites or dependencies that need to be installed.]
+- The developer starts the provisioning process by running the appropriate script (Windows or Linux).
+  - Windows: Download and run the MSI file: file link
+  - Linux: apt-get install turboboulder
+- This script asks a series of questions to collect necessary information for configuring the project.
+- Based on the provided inputs, the script fetches the necessary Docker containers from the GitHub Docker Registry and sets them up.
 
-[Step 1]
-[Step 2]
-[Step 3]
 ...
 ## Usage
 [Provide examples or guidelines on how to use your project. Include any relevant code snippets or configurations that may be necessary.]
