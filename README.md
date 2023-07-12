@@ -46,7 +46,7 @@ Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' M
 
 #### Linux
 
-1. Use `apt-get` to download the CLI tool: 
+1. Use `apt-get` to install the CLI tool: 
     ```bash
     sudo apt-get install <cli-tool-name>
     ```
