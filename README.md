@@ -6,9 +6,39 @@ The platform leverages Docker containers to provide a standardized and replicabl
 Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' MSI, ensuring accessibility for developers on various operating systems. As an open-source project, Turbo Boulder thrives on community collaboration and welcomes contributions from developers worldwide.
 
 ## Features
-[Feature 1]: [Description of feature 1]
-[Feature 2]: [Description of feature 2]
-[Feature 3]: [Description of feature 3]
+
+### CLI Provisioning Tool
+- Cross-platform support: Runs on both Windows and Linux systems, with respective precompiled versions.
+- Interactive setup: Guides the user through the setup process, automating Docker container setup and configuration.
+
+### Dotnet Core API
+- .NET Core framework: Efficient backend operations facilitated by the .NET Core framework.
+- Modular design: Adherence to API best practices for a modular and scalable architecture.
+- Security measures: Implementation of modern security practices to protect data and interactions.
+
+### Blazor Frontend
+- Minimalistic design: Provides a simple, minimalistic interface as a starting point for customization.
+- Flexibility: Offers users the freedom to apply their own vision and design preferences.
+- Cross-platform: Web-based design ensures compatibility across different platforms.
+
+### MS SQL Database
+- Reliable storage: Utilizes MS SQL for robust and secure data storage.
+- Integration: Seamless integration with the Dotnet Core API for efficient data operations.
+- Scalability: Scales to accommodate growing data needs without compromising performance.
+
+### Management Interface
+- Configuration management: Allows for straightforward configuration changes during the development phase.
+- Deployment process: Provides an easy way to initiate the deployment process.
+
+### Docker Containers
+- Isolation: Each application service runs in its own Docker container, minimizing conflicts.
+- Consistency: Containerization ensures consistent application behavior across different environments.
+- Version-controlled: Docker container configurations are tracked and controlled within the project's GitHub repository.
+
+### GitHub Integration
+- Version control: GitHub is used for version control, tracking changes to the codebase and Docker container configurations.
+- Docker management: The GitHub Docker Registry is used for convenient Docker container management.
+
 ...
 ## Installation
 - The developer starts the provisioning process by running the appropriate script (Windows or Linux).
