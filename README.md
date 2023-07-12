@@ -40,24 +40,38 @@ Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' M
 - Docker management: The GitHub Docker Registry is used for convenient Docker container management.
 
 ...
-## Installation
-- The developer starts the provisioning process by running the appropriate script (Windows or Linux).
-  - Windows: Download and run the MSI file: file link
-  - Linux: apt-get install turboboulder
-- This script asks a series of questions to collect necessary information for configuring the project.
-- Based on the provided inputs, the script fetches the necessary Docker containers from the GitHub Docker Registry and sets them up.
-
-...
 ## Usage
-[Provide examples or guidelines on how to use your project. Include any relevant code snippets or configurations that may be necessary.]
 
-bash
-Copy code
-### Example usage 1
-$ command --option [argument]
+### Installation
 
-### Example usage 2
-$ command [filename]
+#### Linux
+
+1. Use `apt-get` to download the CLI tool: 
+    ```bash
+    sudo apt-get install <cli-tool-name>
+    ```
+
+#### Windows
+
+1. Download the MSI package and follow the installation wizard steps.
+
+### Setup
+
+1. Navigate to the directory where you want to create the project.
+2. Run the CLI tool in your console. If you already have a name for your project, you can include it as a parameter:
+    ```bash
+    turboboulder <project-name>
+    ```
+    If you do not include a project name, the tool will prompt you to enter one. 
+
+    A new subdirectory with your project name will be created, and the tool will guide you through the setup process, configuring the necessary Docker containers.
+
+### Accessing Project Files
+
+After the setup, you can access the project files with your preferred code editor:
+
+- The API project files are located in the `api` subdirectory within your project folder.
+- The frontend project files are located in the `frontend` subdirectory within your project folder.
 
 ## Contributing
 
