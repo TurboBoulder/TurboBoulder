@@ -1,0 +1,46 @@
+﻿@page "/test"
+@using System.Net.Http
+@using System.Text.Json
+@using IdaWebApplicationTemplate.Shared.DataTransferObjects;
+@inject HttpClient Http
+
+<h3>Test Page</h3>
+
+@if (user == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>@userJson</p>
+}
+
+@code {
+    private DTOUserData user;
+    private string userJson;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Http.DefaultRequestHeaders.Add("credentials", "include");
+
+            var response = await Http.GetAsync("https://webserver.testhost.idania.se:7056/api/user/current");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                user = JsonSerializer.Deserialize<DTOUserData>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                userJson = JsonSerializer.Serialize(user, new JsonSerializerOptions { WriteIndented = true });
+            }
+            else
+            {
+                userJson = $"Error: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            userJson = $"Exception: {ex.Message}";
+        }
+    }
+}
