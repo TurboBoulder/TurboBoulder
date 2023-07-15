@@ -1,0 +1,28 @@
+[ req ]
+default_bits       = 2048
+default_md         = sha256
+default_keyfile    = webserver.key
+distinguished_name = req_distinguished_name
+prompt             = no
+req_extensions     = req_ext
+
+[ req_distinguished_name ]
+C  = SE
+ST = Denial
+L  = Harnosand
+O  = Idania AB
+CN = webserver.testhost.idania.se
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1   = webserver.testhost.idania.se
+
+[ v3_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+subjectAltName = @alt_names
