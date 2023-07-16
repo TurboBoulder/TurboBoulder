@@ -8,7 +8,6 @@ on:
 jobs:
   package:
     runs-on: ubuntu-latest
-    permissions: write-all
 
     steps:
     - name: Checkout repo
@@ -27,7 +26,7 @@ jobs:
         tag_name: ${{ github.sha }}
         release_name: Release ${{ github.sha }}
         draft: false
-        prerelease: false
+        prerelease: true
 
     - name: Upload Release Asset
       id: upload-release-asset 
