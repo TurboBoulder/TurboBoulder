@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace WebTemplateCLI
 {
@@ -36,6 +37,15 @@ namespace WebTemplateCLI
                         await DownloadFile(item.download_url, item.path);
                         Console.WriteLine($"Downloaded file: {item.path}");
                     }
+                    else if (item.type == "dir") // If the item is a directory
+                    {
+                        // Create the subfolder locally
+                        Directory.CreateDirectory(item.path);
+
+                        // Recursively download the contents of the subfolder
+                        await DownloadFolderFromBranch(branch, Path.Combine(folderPath, item.name));
+                        Console.WriteLine($"Downloaded folder: {item.path}");
+                    }
                 }
             }
             else
@@ -50,10 +60,18 @@ namespace WebTemplateCLI
 
             if (response.IsSuccessStatusCode)
             {
-                using (Stream fileStream = await response.Content.ReadAsStreamAsync())
-                using (FileStream outputStream = new FileStream(savePath, FileMode.Create))
+                try
                 {
-                    await fileStream.CopyToAsync(outputStream);
+                    using (Stream fileStream = await response.Content.ReadAsStreamAsync())
+                    using (FileStream outputStream = new FileStream(savePath, FileMode.Create))
+                    {
+                        await fileStream.CopyToAsync(outputStream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    throw;
                 }
             }
             else

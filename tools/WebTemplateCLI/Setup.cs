@@ -77,6 +77,10 @@ namespace WebTemplateCLI
                 bool confirmation = AnsiConsole.Confirm("The frontend folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
                 if (!confirmation) throw new Exception("Canceled download");
             }
+            else
+            {
+                Directory.CreateDirectory(folderPath);
+            }
 
             await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "frontend");
         }
@@ -93,6 +97,10 @@ namespace WebTemplateCLI
             {
                 bool confirmation = AnsiConsole.Confirm("The api folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
                 if (!confirmation) throw new Exception("Canceled download");
+            }
+            else
+            {
+                Directory.CreateDirectory(folderPath);
             }
 
             await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "api");
