@@ -63,6 +63,7 @@ namespace WebTemplateCLI
             await DownloadAPIFiles();
             await DownloadFrontendFiles();
             await DownloadSharedFiles();
+
             await GitHubFolderDownloader.DownloadFileFromBranch("0.01a", "TurboBoulder.sln");
         }
 
