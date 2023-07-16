@@ -1,4 +1,4 @@
-name: Package Files
+name: Package project files
 
 on: [workflow_dispatch]
   
