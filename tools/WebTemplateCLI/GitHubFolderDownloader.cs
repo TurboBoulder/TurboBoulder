@@ -54,7 +54,7 @@ namespace WebTemplateCLI
             }
         }
 
-        private static async Task DownloadFile(string url, string savePath)
+        public static async Task DownloadFile(string url, string savePath)
         {
             HttpResponseMessage response = await _client.GetAsync(url);
 

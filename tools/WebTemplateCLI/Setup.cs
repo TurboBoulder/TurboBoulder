@@ -62,6 +62,7 @@ namespace WebTemplateCLI
             AnsiConsole.MarkupLine("Downloading project files...");
             await DownloadAPIFiles();
             await DownloadFrontendFiles();
+            await DownloadSharedFiles();
         }
 
         private static async Task DownloadFrontendFiles()
@@ -83,6 +84,27 @@ namespace WebTemplateCLI
             }
 
             await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "frontend");
+        }
+
+        private static async Task DownloadSharedFiles()
+        {
+            AnsiConsole.MarkupLine("Downloading frontend");
+
+            string relativePath = "shared";
+
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+
+            if (Directory.Exists(folderPath))
+            {
+                bool confirmation = AnsiConsole.Confirm("The shared folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
+                if (!confirmation) throw new Exception("Canceled download");
+            }
+            else
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "shared");
         }
 
         private static async Task DownloadAPIFiles()
