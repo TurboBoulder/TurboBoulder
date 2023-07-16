@@ -1,14 +1,14 @@
 name: Package Files
 
-on: [workflow_dispatch]
-# on:
-#   push:
-#     branches:
-#       - 0.01b  # Or whatever branch you want to trigger this workflow
+on:
+  push:
+    branches:
+      - 0.01b  # Or whatever branch you want to trigger this workflow
 
 jobs:
   package:
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
     - name: Checkout repo
