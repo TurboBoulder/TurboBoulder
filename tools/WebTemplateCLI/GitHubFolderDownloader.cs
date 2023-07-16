@@ -54,7 +54,37 @@ namespace WebTemplateCLI
             }
         }
 
-        public static async Task DownloadFile(string url, string savePath)
+        public static async Task DownloadFileFromBranch(string branch, string filePath)
+        {
+            string owner = "TurboBoulder"; // Replace with your GitHub username or organization name
+            string repo = "TurboBoulder"; // Replace with the repository name
+
+            string apiUrl = $"https://api.github.com/repos/{owner}/{repo}/contents/{filePath}?ref={branch}";
+
+            _client.DefaultRequestHeaders.Add("User-Agent", "TurboBoulderCLI");
+
+            HttpResponseMessage response = await _client.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the response content
+                var fileContent = Newtonsoft.Json.JsonConvert.DeserializeObject<GitHubFolderContent>(content);
+
+                if (fileContent.type == "file")
+                {
+                    await DownloadFile(fileContent.download_url, fileContent.path);
+                    Console.WriteLine($"Downloaded file: {fileContent.path}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Failed to retrieve file contents. Status code: " + response.StatusCode);
+            }
+        }
+
+        private static async Task DownloadFile(string url, string savePath)
         {
             HttpResponseMessage response = await _client.GetAsync(url);
 
