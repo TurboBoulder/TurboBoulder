@@ -1,6 +1,7 @@
 name: Package project files
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
   
 #on:
 #  push:
