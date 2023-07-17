@@ -5,8 +5,6 @@ on:
     branches:
       - 0.01b
   workflow_dispatch:
-  
-
 
 jobs:
   package:
@@ -28,6 +26,7 @@ jobs:
       with:
         tag_name: ${{ github.sha }}
         release_name: Release ${{ github.sha }}
+        body: Test Release
         draft: false
         prerelease: true
 
