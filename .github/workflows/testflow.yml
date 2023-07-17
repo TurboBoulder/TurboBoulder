@@ -6,7 +6,7 @@ on:
       - 0.01b
   workflow_dispatch:
   
-permissions: write-all
+
 
 jobs:
   package:
@@ -19,6 +19,7 @@ jobs:
     - name: Zip files
       run: |
         zip -r project_files_test.zip api frontend shared TurboBoulder.sln
+        
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -28,7 +29,7 @@ jobs:
         tag_name: ${{ github.sha }}
         release_name: Release ${{ github.sha }}
         draft: false
-        prerelease: false
+        prerelease: true
 
     - name: Upload Release Asset
       id: upload-release-asset 
