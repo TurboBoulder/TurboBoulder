@@ -5,6 +5,8 @@ on:
     branches:
       - 0.01b
   workflow_dispatch:
+  
+permissions: read-all|write-all
 
 jobs:
   package:
