@@ -82,8 +82,10 @@ Hello! Thanks for your interest in contributing to this project! We value your e
 ### Newbie Alert
 I'd like to highlight that I am quite new to managing a GitHub project. Therefore, my turnaround time for reviewing and integrating contributions, especially pull requests, might not be as speedy as you might expect from seasoned project maintainers. I kindly ask for your patience and understanding as I familiarize myself with the process.
 
+Any feedback about how the project is structured is **highly appreciated**!
+
 ### Guidelines
-Before making any contributions, please take a moment to review our Contributing Guidelines (if available). This document outlines the standards and procedures that we ask contributors to adhere to.
+Before making any contributions, please take a moment to review our Contributing Guidelines. This document outlines the standards and procedures that we ask contributors to adhere to.
 
 Please keep in mind that as I navigate the ropes of project maintenance, I might inadvertently overlook something or be slow to respond. Your patience and cooperation are highly appreciated.
 
