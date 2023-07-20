@@ -20,9 +20,10 @@ jobs:
 
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
+        run: |
+          REF_NAME=$(echo "$GITHUB_REF" | sed 's/.*\///')
+          echo ::set-output name=VERSION::${REF_NAME//\//-}
         shell: bash
-
 
       - name: Create Release
         id: create_release
