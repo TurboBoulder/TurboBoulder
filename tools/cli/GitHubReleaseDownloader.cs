@@ -16,7 +16,7 @@ namespace TurboBoulderCLI
         static GitHubReleaseDownloader()
         {
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string relativePath = "settings/downloadurl.conf";
+            string relativePath = "downloadurl.conf";
             settingsFilePath = Path.Combine(executableDirectory, relativePath);
         }
 
