@@ -26,6 +26,16 @@ namespace WebTemplateCLI
             projectName = InputProjectName();
             projectNiceName = projectName.Replace(" ", "");
 
+            try
+            {
+                await DownloadProjectFiles();
+            }
+            catch (Exception)
+            {
+                AnsiConsole.MarkupLine("Installation cancelled");
+                return false;
+            }
+
             hostIP = InputHostIP();
 
             baseurl = InputBaseURL();
@@ -40,16 +50,6 @@ namespace WebTemplateCLI
 
             AnsiConsole.MarkupLine("Docker actions...");
             if (!Docker.ExecuteCompose("docker-compose.yaml")) return false;
-
-            try
-            {
-                await DownloadProjectFiles();
-            }
-            catch (Exception)
-            {
-                AnsiConsole.MarkupLine("Installation cancelled");
-                return false;
-            }
 
             AnsiConsole.MarkupLine("Setting up Web Management Interface...");
             // set up web management interface      
