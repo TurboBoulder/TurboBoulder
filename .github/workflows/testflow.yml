@@ -24,7 +24,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Release_${{ github.ref_name }}"
+          tag_name: "Release_${{ github.ref }}"
           release_name: "Release_${{ github.ref }}"
           body: Test Release
           draft: false
@@ -39,8 +39,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./project_files_test.zip
           asset_name: project_files_test.zip
-          asset_content_type: application/zip
-          
+          asset_content_type: application/zip          
             - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -59,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Windows_Release_${{ github.ref_name }}"
+          tag_name: "Windows_Release_${{ github.ref }}"
           release_name: "Windows_Release_${{ github.ref }}"
           body: Windows Release
           draft: false
@@ -89,7 +88,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Linux_Release_${{ github.ref_name }}"
+          tag_name: "Linux_Release_${{ github.ref }}"
           release_name: "Linux_Release_${{ github.ref }}"
           body: Linux Release
           draft: false
