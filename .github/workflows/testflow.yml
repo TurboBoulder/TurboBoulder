@@ -24,8 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.replace_spaces.outputs.github.ref_name }}
-          release_name: ${{ steps.replace_spaces.outputs.github.ref_name }}
+          tag_name: "Release_${{ github.ref }}"
+          release_name: "Release_${{ github.ref }}"
           body: Test Release
           draft: false
           prerelease: true
