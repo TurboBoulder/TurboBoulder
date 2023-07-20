@@ -18,14 +18,19 @@ jobs:
         run: |
           zip -r project_files_test.zip api frontend shared TurboBoulder.sln
 
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo ${GITHUB_REF#refs/*/})
+        shell: bash
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Release_${{ github.ref }}"
-          release_name: "Release_${{ github.ref }}"
+          tag_name: "Release_${{ steps.get_version.outputs.VERSION }}"
+          release_name: "Release_${{ steps.get_version.outputs.VERSION }}"
           body: Test Release
           draft: false
           prerelease: true
@@ -39,8 +44,9 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./project_files_test.zip
           asset_name: project_files_test.zip
-          asset_content_type: application/zip          
-            - name: Setup .NET
+          asset_content_type: application/zip
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.0.x'  # adjust this according to your project's requirement
@@ -58,8 +64,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Windows_Release_${{ github.ref }}"
-          release_name: "Windows_Release_${{ github.ref }}"
+          tag_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
+          release_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
           body: Windows Release
           draft: false
           prerelease: true
@@ -88,8 +94,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Linux_Release_${{ github.ref }}"
-          release_name: "Linux_Release_${{ github.ref }}"
+          tag_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
+          release_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
           body: Linux Release
           draft: false
           prerelease: true
@@ -104,4 +110,3 @@ jobs:
           asset_path: ./tools/cli/bin/Release/net7.0/linux-x64/publish
           asset_name: linux_asset.zip
           asset_content_type: application/zip
-
