@@ -14,12 +14,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Replace Spaces with Underscores
-        id: replace_spaces
-        run: echo "::set-output name=tag_name::Release ${{ github.ref }}"
-        env:
-          GITHUB_REF: ${{ replace(github.ref, ' ', '_') }}
-
       - name: Zip files
         run: |
           zip -r project_files_test.zip api frontend shared TurboBoulder.sln
@@ -30,8 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.replace_spaces.outputs.tag_name }}
-          release_name: ${{ steps.replace_spaces.outputs.tag_name }}
+          tag_name: ${{ steps.replace_spaces.outputs.github.ref_name }}
+          release_name: ${{ steps.replace_spaces.outputs.github.ref_name }}
           body: Test Release
           draft: false
           prerelease: true
