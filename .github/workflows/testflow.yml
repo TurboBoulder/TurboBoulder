@@ -126,9 +126,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Linux_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          release_name: "Linux_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          body: Linux Test only
+          tag_name: "CLI_Tool_Linux_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "CLI tool for linux - ${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          body: CLI tool for linux. Far from working.
           draft: false
           prerelease: true
 
