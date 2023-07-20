@@ -52,9 +52,20 @@ jobs:
           asset_name: project_files_test.zip
           asset_content_type: application/zip
 
+      - name: Get Release Asset Information
+        id: get_info
+        run: |
+          RELEASE_ID=$(echo '${{ steps.create_release.outputs.id }}' | jq)
+          ASSET_ID=$(curl --location --request GET 'https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID' \
+          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | jq '.assets[0].id')
+          DOWNLOAD_URL=$(curl --location --request GET 'https://api.github.com/repos/$GITHUB_REPOSITORY/releases/assets/$ASSET_ID' \
+          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | jq '.browser_download_url')
+          echo "::set-output name=download_url::$DOWNLOAD_URL"
+
       - name: Create config file
         run: |
-          echo "${{ steps.create_release.outputs.upload_url }}" > downloadurl.conf
+          echo "${{ steps.get_info.outputs.download_url }}" > downloadurl.conf
+
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
