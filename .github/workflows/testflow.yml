@@ -40,3 +40,69 @@ jobs:
           asset_path: ./project_files_test.zip
           asset_name: project_files_test.zip
           asset_content_type: application/zip
+          
+            - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.x'  # adjust this according to your project's requirement
+
+      - name: Build project - Windows
+        run: |
+          cd tools/cli
+          dotnet publish -c Release -r win10-x64 --self-contained false
+          cd ../..
+        shell: bash
+
+      - name: Create Windows Release
+        id: create_windows_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "Windows_Release_${{ github.ref_name }}"
+          release_name: "Windows_Release_${{ github.ref }}"
+          body: Windows Release
+          draft: false
+          prerelease: true
+
+      - name: Upload Windows Release Asset
+        id: upload-windows-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_windows_release.outputs.upload_url }}
+          asset_path: ./tools/cli/bin/Release/net7.0/win10-x64/publish
+          asset_name: windows_asset.zip
+          asset_content_type: application/zip
+
+      - name: Build project - Linux
+        run: |
+          cd tools/cli
+          dotnet publish -c Release -r linux-x64 --self-contained false
+          cd ../..
+        shell: bash
+
+      - name: Create Linux Release
+        id: create_linux_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "Linux_Release_${{ github.ref_name }}"
+          release_name: "Linux_Release_${{ github.ref }}"
+          body: Linux Release
+          draft: false
+          prerelease: true
+
+      - name: Upload Linux Release Asset
+        id: upload-linux-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_linux_release.outputs.upload_url }}
+          asset_path: ./tools/cli/bin/Release/net7.0/linux-x64/publish
+          asset_name: linux_asset.zip
+          asset_content_type: application/zip
+
