@@ -33,7 +33,7 @@ jobs:
         with:
           tag_name: "Release_${{ steps.get_version.outputs.VERSION }}"
           release_name: "Release_${{ steps.get_version.outputs.VERSION }}"
-          body: Test Release
+          body: Test only
           draft: false
           prerelease: true
 
@@ -69,7 +69,7 @@ jobs:
         with:
           tag_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
           release_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
-          body: Windows Release
+          body: Windows Test only
           draft: false
           prerelease: true
 
@@ -100,7 +100,7 @@ jobs:
         with:
           tag_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
           release_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
-          body: Linux Release
+          body: Linux Test only
           draft: false
           prerelease: true
 
