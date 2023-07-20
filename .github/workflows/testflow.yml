@@ -35,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Release_${{ env.BRANCH_NAME }}"
-          release_name: "Release_${{ env.BRANCH_NAME }}"
+          tag_name: "Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
           body: Test only
           draft: false
           prerelease: true
@@ -76,8 +76,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Windows_Release_${{ env.BRANCH_NAME }}"
-          release_name: "Windows_Release_${{ env.BRANCH_NAME }}"
+          tag_name: "Windows_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "Windows_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
           body: Windows Test only
           draft: false
           prerelease: true
@@ -108,8 +108,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Linux_Release_${{ env.BRANCH_NAME }}"
-          release_name: "Linux_Release_${{ env.BRANCH_NAME }}"
+          tag_name: "Linux_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "Linux_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
           body: Linux Test only
           draft: false
           prerelease: true
