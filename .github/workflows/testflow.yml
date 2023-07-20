@@ -18,10 +18,6 @@ jobs:
         run: |
           zip -r project_files_test.zip api frontend shared TurboBoulder.sln
 
-      - name: Replace Spaces with Underscores
-        id: replace_spaces
-        run: echo "::set-output name=tag_name::${{ github.ref // /_ }}"
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
