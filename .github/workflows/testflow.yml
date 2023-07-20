@@ -80,8 +80,9 @@ jobs:
           cd tools/cli
           dotnet publish -c Release -r win10-x64 --self-contained false
           cp ../../downloadurl.conf ./bin/Release/net7.0/win10-x64/publish/downloadurl.conf
-          zip -r windows_asset.zip ./bin/Release/net7.0/win10-x64/publish
-          cd ../..
+          cd ./bin/Release/net7.0/win10-x64/publish
+          zip -r ../../../../../windows_asset.zip ./
+          cd ../../../../../
         shell: bash
 
       - name: Create Windows Release
@@ -112,9 +113,11 @@ jobs:
           cd tools/cli
           dotnet publish -c Release -r linux-x64 --self-contained false
           cp ../../downloadurl.conf ./bin/Release/net7.0/linux-x64/publish/downloadurl.conf
-          zip -r linux_asset.zip ./bin/Release/net7.0/linux-x64/publish
-          cd ../..
+          cd ./bin/Release/net7.0/linux-x64/publish
+          zip -r ../../../../../linux_asset.zip ./
+          cd ../../../../../
         shell: bash
+
 
       - name: Create Linux Release
         id: create_linux_release
