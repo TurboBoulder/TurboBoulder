@@ -11,7 +11,7 @@ C  = SE
 ST = Denial
 L  = Harnosand
 O  = Idania AB
-CN = testhost.idania.se
+CN = turboboulder.internal
 
 [ v3_ca ]
 subjectKeyIdentifier = hash
