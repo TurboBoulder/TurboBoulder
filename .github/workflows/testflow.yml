@@ -3,7 +3,7 @@ name: testflow
 on:
   push:
     branches:
-      - 'release_*'
+      - 0.01b
   workflow_dispatch:
 
 jobs:
@@ -11,46 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-    - name: Zip files
-      run: |
-        zip -r project_files_test.zip api frontend shared TurboBoulder.sln
+      - name: Zip files
+        run: |
+          zip -r project_files_test.zip api frontend shared TurboBoulder.sln
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "Release ${{ github.ref }}"
+          release_name: "Release ${{ github.ref }}${{ github.ref }}{{#startsWith}}refs/heads/{{/startsWith}}"
+          body: Test Release
+          draft: false
+          prerelease: true
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: test_release
-        release_name: Release ${{ steps.extract_branch.outputs.branch }}
-        body: Test Release
-        draft: false
-        prerelease: true
-
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} 
-        asset_path: ./project_files_test.zip
-        asset_name: project_files_test.zip
-        asset_content_type: application/zip
-      
-    - name: Delete release if upload fails
-      if: ${{ failure() }}
-      run: |
-        curl \
-          -X DELETE \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./project_files_test.zip
+          asset_name: project_files_test.zip
+          asset_content_type: application/zip
