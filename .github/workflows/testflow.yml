@@ -18,12 +18,16 @@ jobs:
         run: |
           zip -r project_files_test.zip api frontend shared TurboBoulder.sln
 
-      - name: Get the version
-        id: get_version
+      - name: "Get branch name and save to env"
+        env:
+          IS_PR: ${{ github.EVENT_NAME == 'pull_request' }}
         run: |
-          REF_NAME=$(echo "$GITHUB_REF" | sed 's/.*\///')
-          echo ::set-output name=VERSION::${REF_NAME//\//-}
-        shell: bash
+          if ${IS_PR}; then
+            BRANCH_NAME="${GITHUB_HEAD_REF}"
+          else
+            BRANCH_NAME="${GITHUB_REF##*/}"
+          fi
+          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
@@ -31,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Release_${{ steps.get_version.outputs.VERSION }}"
-          release_name: "Release_${{ steps.get_version.outputs.VERSION }}"
+          tag_name: "Release_${{ env.BRANCH_NAME }}"
+          release_name: "Release_${{ env.BRANCH_NAME }}"
           body: Test only
           draft: false
           prerelease: true
@@ -72,8 +76,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
-          release_name: "Windows_Release_${{ steps.get_version.outputs.VERSION }}"
+          tag_name: "Windows_Release_${{ env.BRANCH_NAME }}"
+          release_name: "Windows_Release_${{ env.BRANCH_NAME }}"
           body: Windows Test only
           draft: false
           prerelease: true
@@ -104,8 +108,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
-          release_name: "Linux_Release_${{ steps.get_version.outputs.VERSION }}"
+          tag_name: "Linux_Release_${{ env.BRANCH_NAME }}"
+          release_name: "Linux_Release_${{ env.BRANCH_NAME }}"
           body: Linux Test only
           draft: false
           prerelease: true
