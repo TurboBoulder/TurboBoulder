@@ -47,7 +47,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'  # adjust this according to your project's requirement
 
