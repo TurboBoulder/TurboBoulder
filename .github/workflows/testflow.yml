@@ -35,11 +35,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          release_name: "Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          body: Test only
+          tag_name: "Project_Files_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "Project Files Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          body: Project files only. These will be downloaded by the CLI tool when needed.
           draft: false
           prerelease: true
+
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -91,9 +92,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "Windows_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          release_name: "Windows_Release_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
-          body: Windows Test only
+          tag_name: "CLI_Tool_Windows_${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          release_name: "CLI tool for windows - ${{ env.BRANCH_NAME }}_${{ github.run_number }}"
+          body: CLI tool for windows. Far from working.
           draft: false
           prerelease: true
 
