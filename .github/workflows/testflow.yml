@@ -1,9 +1,9 @@
 name: testflow
- 
+
 on:
   push:
     branches:
-      - 0.01b
+      - 'release_*'
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,12 @@ jobs:
     - name: Zip files
       run: |
         zip -r project_files_test.zip api frontend shared TurboBoulder.sln
-        
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -25,7 +30,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: test_release
-        release_name: Release ${{ github.ref }}
+        release_name: Release ${{ steps.extract_branch.outputs.branch }}
         body: Test Release
         draft: false
         prerelease: true
@@ -40,3 +45,12 @@ jobs:
         asset_path: ./project_files_test.zip
         asset_name: project_files_test.zip
         asset_content_type: application/zip
+      
+    - name: Delete release if upload fails
+      if: ${{ failure() }}
+      run: |
+        curl \
+          -X DELETE \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}
