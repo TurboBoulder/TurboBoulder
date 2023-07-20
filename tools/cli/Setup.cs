@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TurboBoulderCLI;
 
 namespace WebTemplateCLI
 {
@@ -60,76 +61,37 @@ namespace WebTemplateCLI
         private static async Task DownloadProjectFiles()
         {
             AnsiConsole.MarkupLine("Downloading project files...");
-            await DownloadAPIFiles();
-            await DownloadFrontendFiles();
-            await DownloadSharedFiles();
 
-            await GitHubFolderDownloader.DownloadFileFromBranch("0.01a", "TurboBoulder.sln");
+            List<string> foldersToCheck = new List<string>
+            {
+                "api",
+                "frontend",
+                "shared"
+            };
+
+            List<string> existingFolders = foldersToCheck.Where(Directory.Exists).ToList();
+
+            if (existingFolders.Count > 0)
+            {
+                AnsiConsole.MarkupLine("The following folders already exist:");
+                foreach (string folder in existingFolders)
+                {
+                    AnsiConsole.MarkupLine($"[red]{folder}[/]");
+                }
+
+
+                bool continueDownload = AnsiConsole.Confirm("Continuing will overwrite existing files in these folders. Do you want to continue? [red](Default: No)[/]");
+
+                if (!continueDownload)
+                {
+                    AnsiConsole.MarkupLine("Download canceled by user.");
+                    return;
+                }
+            }
+
+            await GitHubReleaseDownloader.DownloadAndUnzipReleaseAsync("");
         }
 
-
-        private static async Task DownloadFrontendFiles()
-        {
-            AnsiConsole.MarkupLine("Downloading frontend");
-
-            string relativePath = "frontend";
-
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
-
-            if (Directory.Exists(folderPath))
-            {
-                bool confirmation = AnsiConsole.Confirm("The frontend folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
-                if (!confirmation) throw new Exception("Canceled download");
-            }
-            else
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "frontend");
-        }
-
-        private static async Task DownloadSharedFiles()
-        {
-            AnsiConsole.MarkupLine("Downloading frontend");
-
-            string relativePath = "shared";
-
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
-
-            if (Directory.Exists(folderPath))
-            {
-                bool confirmation = AnsiConsole.Confirm("The shared folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
-                if (!confirmation) throw new Exception("Canceled download");
-            }
-            else
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "shared");
-        }
-
-        private static async Task DownloadAPIFiles()
-        {
-            AnsiConsole.MarkupLine("Downloading API");
-
-            string relativePath = "api";
-
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
-
-            if (Directory.Exists(folderPath))
-            {
-                bool confirmation = AnsiConsole.Confirm("The api folder already exists. Are you sure you want to continue? [red]Any existing files will be overwritten![/]", false);
-                if (!confirmation) throw new Exception("Canceled download");
-            }
-            else
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            await GitHubFolderDownloader.DownloadFolderFromBranch("0.01a", "api");
-        }
 
         private static string CreatePassword()
         {
