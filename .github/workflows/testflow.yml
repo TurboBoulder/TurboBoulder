@@ -17,6 +17,8 @@ jobs:
       - name: Zip files
         run: |
           zip -r project_files_test.zip api frontend shared TurboBoulder.sln
+          cd tools
+          zip -r ../project_files_test.zip docker/
 
       - name: "Get branch name and save to env"
         env:
