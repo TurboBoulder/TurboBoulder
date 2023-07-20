@@ -55,17 +55,20 @@ jobs:
       - name: Get Release Asset Information
         id: get_info
         run: |
-          RELEASE_ID=$(echo '${{ steps.create_release.outputs.id }}' | jq)
-          ASSET_ID=$(curl --location --request GET 'https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID' \
-          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | jq '.assets[0].id')
-          DOWNLOAD_URL=$(curl --location --request GET 'https://api.github.com/repos/$GITHUB_REPOSITORY/releases/assets/$ASSET_ID' \
-          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | jq '.browser_download_url')
-          echo "::set-output name=download_url::$DOWNLOAD_URL"
+          RELEASE_ID=$(echo "${{ steps.create_release.outputs.id }}")
+          ASSET_INFO=$(curl \
+            --location \
+            --request GET "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+            --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.assets[0]')
+          ASSET_DOWNLOAD_URL=$(echo "$ASSET_INFO" | jq -r '.browser_download_url')
+          echo "ASSET_DOWNLOAD_URL=$ASSET_DOWNLOAD_URL" >> $GITHUB_ENV
+        shell: bash
+
 
       - name: Create config file
         run: |
-          echo "${{ steps.get_info.outputs.download_url }}" > downloadurl.conf
-
+          echo "${ASSET_DOWNLOAD_URL}" > downloadurl.conf
+        shell: bash
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
