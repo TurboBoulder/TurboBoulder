@@ -28,15 +28,6 @@ services:
       - sqlserver/dev.env
     
 
-  # api:
-  #   image:
-
-  # frontendserver:
-  #   image:
-
-
-    
-
 networks:
   dotnetapisqlbridge:
     external: true
