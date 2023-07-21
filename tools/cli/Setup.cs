@@ -49,7 +49,7 @@ namespace WebTemplateCLI
             EnvironmentSetup(baseurl, projectName.Replace(" ", ""), randomPassword);
 
             AnsiConsole.MarkupLine("Docker actions...");
-            if (!Docker.ExecuteCompose("docker-compose.yaml")) return false;
+            if (!Docker.ExecuteCompose("docker/docker-compose.yaml")) return false;
 
             AnsiConsole.MarkupLine("Setting up Web Management Interface...");
             // set up web management interface      
