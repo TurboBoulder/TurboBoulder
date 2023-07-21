@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
+LABEL org.opencontainers.image.source=https://github.com/turboboulder/turboboulder
+
 WORKDIR /app
 
 USER root
