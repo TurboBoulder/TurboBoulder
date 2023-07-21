@@ -49,7 +49,7 @@ namespace WebTemplateCLI
             EnvironmentSetup(baseurl, projectName.Replace(" ", ""), randomPassword);
 
             AnsiConsole.MarkupLine("Docker actions...");
-            if (!Docker.ExecuteCompose("docker/docker-compose.yaml")) return false;
+            if (!Docker.ExecuteCompose("docker-compose.yaml")) return false;
 
             AnsiConsole.MarkupLine("Setting up Web Management Interface...");
             // set up web management interface      
@@ -80,7 +80,7 @@ namespace WebTemplateCLI
                 }
 
 
-                bool continueDownload = AnsiConsole.Confirm("Continuing will overwrite existing files in these folders. Do you want to continue? [red](Default: No)[/]");
+                bool continueDownload = AnsiConsole.Confirm("Continuing will overwrite existing files in these folders. Do you want to continue?", false);
 
                 if (!continueDownload)
                 {

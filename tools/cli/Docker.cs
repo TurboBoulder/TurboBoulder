@@ -22,10 +22,11 @@ namespace WebTemplateCLI
             try
             {
                 string command = "docker"; // GetDockerComposeCommand();
-                string currentDirectory = "./"; GetProgramDirectory();
+                string currentDirectory = "./docker/";
                 string absolutePath = Path.GetFullPath(Path.Combine(currentDirectory, composeFilePath));
 
                 Process process = new Process();
+                process.StartInfo.WorkingDirectory = currentDirectory;
                 process.StartInfo.FileName = command;
                 process.StartInfo.Arguments = "compose up -d";
 
