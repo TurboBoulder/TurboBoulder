@@ -182,7 +182,7 @@ namespace WebTemplateCLI
 
         private static void EnvironmentSetupSqlServer(string randomPassword)
         {
-            string envFilePath = "./sqlserver/dev.env";
+            string envFilePath = "./docker/sqlserver/dev.env";
             Dictionary<string, string> envVariables = new Dictionary<string, string>
         {
             { "MSSQL_SA_PASSWORD", randomPassword },
@@ -193,7 +193,7 @@ namespace WebTemplateCLI
 
         private static void EnvironmentSetupCA(string baseurl, string projectName)
         {
-            string envFilePath = "./ca/dev.env";
+            string envFilePath = "./docker/ca/dev.env";
             Dictionary<string, string> envVariables = new Dictionary<string, string>
             {
                 { "COUNTRY", "SE" },
