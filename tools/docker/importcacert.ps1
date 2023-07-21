@@ -1,3 +1,4 @@
+#
 # Define the URL of the certificate
 $certUrl = "http://testhost.idania.se:8000/rootCA.crt"
 
