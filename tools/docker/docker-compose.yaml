@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ca:
-    image: caimage:0.1
+    image: ghcr.io/turboboulder/turboboulder/caimage:0.1
     networks:
       - dotnetapisqlbridge
     ports:
@@ -15,7 +15,7 @@ services:
 
 
   db:
-    image: idasqlserverexpress:0.1
+    image: ghcr.io/turboboulder/turboboulder/idasqlserverexpress:0.1
     networks:
       - dotnetapisqlbridge
     ports:
