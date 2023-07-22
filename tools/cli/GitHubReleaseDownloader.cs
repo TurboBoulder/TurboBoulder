@@ -60,7 +60,7 @@ namespace TurboBoulderCLI
                     await client.DownloadFileTaskAsync(downloadUrl, zipFilePath);
 
                     // Unzip the release asset to the specified path
-                    ZipFile.ExtractToDirectory(zipFilePath, unzipDirectory);
+                    ZipFile.ExtractToDirectory(zipFilePath, unzipDirectory, true);
 
                     // Delete the temporary zip file
                     File.Delete(zipFilePath);
@@ -68,7 +68,7 @@ namespace TurboBoulderCLI
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred during the release download and unzip process.", ex);
+                throw new Exception("An error occurred during the release download and unzip process: " + ex.Message);
             }
         }
     }

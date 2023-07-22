@@ -26,6 +26,16 @@ namespace WebTemplateCLI
             projectName = InputProjectName();
             projectNiceName = projectName.Replace(" ", "");
 
+            try
+            {
+                await DownloadProjectFiles();
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.MarkupLine("Installation cancelled. " + ex.Message);
+                return false;
+            }
+
             hostIP = InputHostIP();
 
             baseurl = InputBaseURL();
@@ -40,16 +50,6 @@ namespace WebTemplateCLI
 
             AnsiConsole.MarkupLine("Docker actions...");
             if (!Docker.ExecuteCompose("docker-compose.yaml")) return false;
-
-            try
-            {
-                await DownloadProjectFiles();
-            }
-            catch (Exception)
-            {
-                AnsiConsole.MarkupLine("Installation cancelled");
-                return false;
-            }
 
             AnsiConsole.MarkupLine("Setting up Web Management Interface...");
             // set up web management interface      
@@ -80,7 +80,7 @@ namespace WebTemplateCLI
                 }
 
 
-                bool continueDownload = AnsiConsole.Confirm("Continuing will overwrite existing files in these folders. Do you want to continue? [red](Default: No)[/]");
+                bool continueDownload = AnsiConsole.Confirm("Continuing will overwrite existing files in these folders. Do you want to continue?", false);
 
                 if (!continueDownload)
                 {
@@ -182,7 +182,7 @@ namespace WebTemplateCLI
 
         private static void EnvironmentSetupSqlServer(string randomPassword)
         {
-            string envFilePath = "./sqlserver/dev.env";
+            string envFilePath = "./docker/sqlserver/dev.env";
             Dictionary<string, string> envVariables = new Dictionary<string, string>
         {
             { "MSSQL_SA_PASSWORD", randomPassword },
@@ -193,7 +193,7 @@ namespace WebTemplateCLI
 
         private static void EnvironmentSetupCA(string baseurl, string projectName)
         {
-            string envFilePath = "./ca/dev.env";
+            string envFilePath = "./docker/ca/dev.env";
             Dictionary<string, string> envVariables = new Dictionary<string, string>
             {
                 { "COUNTRY", "SE" },

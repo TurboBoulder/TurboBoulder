@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
+LABEL org.opencontainers.image.source=https://github.com/turboboulder/turboboulder
+
 WORKDIR /app
 
 USER root
@@ -22,7 +24,7 @@ RUN chmod +x start.sh
 #RUN /prepare-certs.sh
 
 ENV ACCEPT_EULA=Y
-ENV MSSQL_SA_PASSWORD=vBw9Gj@2Yp
+# ENV MSSQL_SA_PASSWORD=insertsqlpasswordhere
 ENV MSSQL_PID=Express
 
 EXPOSE 1433

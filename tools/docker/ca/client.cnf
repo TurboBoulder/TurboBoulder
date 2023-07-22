@@ -11,13 +11,13 @@ C  = SE
 ST = Denial
 L  = Harnosand
 O  = Idania AB
-CN = client.testhost.idania.se
+CN = client.turboboulder.internal
 
 [ req_ext ]
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1   = client.testhost.idania.se
+DNS.1   = client.turboboulder.internal
 
 [ v3_ca ]
 subjectKeyIdentifier = hash
