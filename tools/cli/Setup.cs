@@ -44,9 +44,10 @@ namespace WebTemplateCLI
 
             databaseUsername = InputDBUsername(baseurl);
 
-            string randomPassword = CreatePassword();
+            string saPassword = CreatePassword();
+            string dbuserPassword = CreatePassword();
 
-            EnvironmentSetup(baseurl, projectName.Replace(" ", ""), randomPassword);
+            EnvironmentSetup(baseurl, projectName.Replace(" ", ""), saPassword, databaseUsername, dbuserPassword);
 
             AnsiConsole.MarkupLine("Docker actions...");
             if (!Docker.ExecuteCompose("docker-compose.yaml")) return false;
@@ -156,7 +157,7 @@ namespace WebTemplateCLI
             return projectName;
         }
 
-        private static void EnvironmentSetup(string baseurl, string projectName, string randomPassword)
+        private static void EnvironmentSetup(string baseurl, string projectName, string sapassword, string dbusername, string dbpassword)
         {
             AnsiConsole.MarkupLine("Certificates setup");
             // ask for
@@ -169,7 +170,7 @@ namespace WebTemplateCLI
             // create env files for docker images
             EnvironmentSetupCA(baseurl, projectName);
 
-            EnvironmentSetupSqlServer(randomPassword);
+            EnvironmentSetupSqlServer(sapassword, dbusername, dbpassword);
 
             //string envFilePath = "./webserver/dev.env";
             //Dictionary<string, string> envVariables = new Dictionary<string, string>
@@ -180,13 +181,15 @@ namespace WebTemplateCLI
             //CreateEnvFile(envFilePath, envVariables);
         }
 
-        private static void EnvironmentSetupSqlServer(string randomPassword)
+        private static void EnvironmentSetupSqlServer(string randomPassword, string dbuser, string dbpassword)
         {
             string envFilePath = "./docker/sqlserver/dev.env";
             Dictionary<string, string> envVariables = new Dictionary<string, string>
-        {
-            { "MSSQL_SA_PASSWORD", randomPassword },
-        };
+            {
+                { "MSSQL_SA_PASSWORD", randomPassword },
+                { "SQL_USER", dbuser},
+                { "SQL_PASSWORD", dbpassword }
+            };
 
             CreateEnvFile(envFilePath, envVariables);
         }
