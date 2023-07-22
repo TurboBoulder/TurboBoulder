@@ -20,7 +20,6 @@ services:
       - dotnetapisqlbridge
     ports:
       - 1433:1433
-    hostname: testhost.idania.se
     volumes:
       - ./sqlserver/sql-data:/var/opt/mssql/data    
       - ./sqlserver/init.sql:/docker-entrypoint-initdb.d/init.sql
