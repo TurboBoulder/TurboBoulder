@@ -68,7 +68,7 @@ namespace TurboBoulderCLI
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred during the release download and unzip process.", ex);
+                throw new Exception("An error occurred during the release download and unzip process: " + ex.Message);
             }
         }
     }
