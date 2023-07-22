@@ -23,6 +23,7 @@ services:
     hostname: testhost.idania.se
     volumes:
       - ./sqlserver/sql-data:/var/opt/mssql/data    
+      - ./sqlserver/init.sql:/docker-entrypoint-initdb.d/init.sql
     container_name: db
     env_file:
       - sqlserver/dev.env
