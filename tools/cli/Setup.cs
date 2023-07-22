@@ -30,9 +30,9 @@ namespace WebTemplateCLI
             {
                 await DownloadProjectFiles();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                AnsiConsole.MarkupLine("Installation cancelled");
+                AnsiConsole.MarkupLine("Installation cancelled. " + ex.Message);
                 return false;
             }
 
