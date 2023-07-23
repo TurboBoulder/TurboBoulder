@@ -97,7 +97,7 @@ namespace WebTemplateCLI
         private static string CreatePassword()
         {
             string randomPassword = GenerateRandomPassword(16);
-            AnsiConsole.MarkupLine("The database password is [bold yellow]" + randomPassword + "[/]. Keep it in a safe place!");
+            AnsiConsole.MarkupLine("The generated password is [bold yellow]" + randomPassword + "[/]. Keep it in a safe place!");
             return randomPassword;
         }
 

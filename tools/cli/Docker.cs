@@ -28,7 +28,7 @@ namespace WebTemplateCLI
                 Process process = new Process();
                 process.StartInfo.WorkingDirectory = currentDirectory;
                 process.StartInfo.FileName = command;
-                process.StartInfo.Arguments = "compose up -d";
+                process.StartInfo.Arguments = "compose pull && docker compose up -d";
 
                 process.Start();
                 process.WaitForExit();
