@@ -25,15 +25,26 @@ namespace WebTemplateCLI
                 string currentDirectory = "./docker/";
                 string absolutePath = Path.GetFullPath(Path.Combine(currentDirectory, composeFilePath));
 
-                Process process = new Process();
-                process.StartInfo.WorkingDirectory = currentDirectory;
-                process.StartInfo.FileName = command;
-                process.StartInfo.Arguments = "compose pull && docker compose up -d";
+                // Create and start a process for "docker compose pull"
+                Process pullProcess = new Process();
+                pullProcess.StartInfo.WorkingDirectory = currentDirectory;
+                pullProcess.StartInfo.FileName = command;
+                pullProcess.StartInfo.Arguments = "compose pull";
 
-                process.Start();
-                process.WaitForExit();
+                pullProcess.Start();
+                pullProcess.WaitForExit();
+
+                // Create and start a process for "docker compose up -d"
+                Process upProcess = new Process();
+                upProcess.StartInfo.WorkingDirectory = currentDirectory;
+                upProcess.StartInfo.FileName = command;
+                upProcess.StartInfo.Arguments = "compose up -d";
+
+                upProcess.Start();
+                upProcess.WaitForExit();
 
                 Console.WriteLine("Docker Compose execution completed.");
+
                 return true;
             }
             catch (Exception ex)
