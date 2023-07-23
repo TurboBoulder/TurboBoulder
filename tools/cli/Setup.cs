@@ -206,6 +206,8 @@ namespace WebTemplateCLI
                 { "COMMONNAME", projectName.ToLower() + "." + baseurl }
             };
 
+
+
             CreateEnvFile(envFilePath, envVariables);
         }
 
@@ -333,6 +335,16 @@ namespace WebTemplateCLI
                     foreach (var variable in envVariables)
                     {
                         writer.WriteLine($"{variable.Key}={variable.Value}");
+                    }
+                }
+
+                // read the file and print its content
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
                     }
                 }
             }
