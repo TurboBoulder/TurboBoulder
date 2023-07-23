@@ -11,13 +11,13 @@ C  = SE
 ST = Denial
 L  = Harnosand
 O  = Idania AB
-CN = sqlserver.turboboulder.internal
+CN = sqlserver.$ENV::COMMONNAME
 
 [req_ext]
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1   = sqlserver.turboboulder.internal
+DNS.1   = sqlserver.$ENV::COMMONNAME
 
 [v3_ca]
 subjectKeyIdentifier = hash

@@ -11,7 +11,7 @@ C  = SE
 ST = Denial
 L  = Harnosand
 O  = Idania AB
-CN = turboboulder.internal
+CN = $ENV::COMMONNAME
 
 [ v3_ca ]
 subjectKeyIdentifier = hash

@@ -11,13 +11,13 @@ C  = SE
 ST = Denial
 L  = Harnosand
 O  = Idania AB
-CN = client.turboboulder.internal
+CN = client.$ENV::COMMONNAME
 
 [ req_ext ]
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1   = client.turboboulder.internal
+DNS.1   = client.$ENV::COMMONNAME
 
 [ v3_ca ]
 subjectKeyIdentifier = hash
