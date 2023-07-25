@@ -5,7 +5,7 @@ The platform leverages Docker containers to provide a standardized and replicabl
 
 Turbo Boulder supports easy installation through Linux's 'apt-get' or Windows' MSI, ensuring accessibility for developers on various operating systems. As an open-source project, Turbo Boulder thrives on community collaboration and welcomes contributions from developers worldwide.
 
-Turbo Boulder is currently not usable, but should reach a point where it can be tested before the end of july.
+**Turbo Boulder is currently not usable**, but should reach a point where it can be tested soon.
 
 ## Features
 
