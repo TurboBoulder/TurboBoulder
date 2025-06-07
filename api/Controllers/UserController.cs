@@ -1,7 +1,7 @@
-﻿using IdaWebApplicationTemplate;
-using IdaWebApplicationTemplate.Data;
-using IdaWebApplicationTemplate.Services;
-using IdaWebApplicationTemplate.Shared.DataTransferObjects;
+﻿using TurboBoulder;
+using TurboBoulder.Data;
+using TurboBoulder.Services;
+using TurboBoulder.Shared.DataTransferObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Web;
 
-namespace IdaWebApplicationTemplate.Controllers
+namespace TurboBoulder.Controllers
 {
     [Route("api/user")]
     [ApiController]

@@ -1,8 +1,8 @@
-﻿using IdaWebApplicationTemplate.Utilities;
+﻿using TurboBoulder.Utilities;
 using Microsoft.Data.SqlClient;
 using System.Net;
 
-namespace IdaWebApplicationTemplate.Middleware
+namespace TurboBoulder.Middleware
 {
     public class ExceptionMiddleware
     {

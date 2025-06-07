@@ -1,4 +1,4 @@
-﻿namespace IdaWebApplicationTemplate.Middleware
+﻿namespace TurboBoulder.Middleware
 {
 
     public class HeadersLoggingMiddleware

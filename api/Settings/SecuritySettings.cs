@@ -1,4 +1,4 @@
-﻿namespace IdaWebApplicationTemplate.Settings
+﻿namespace TurboBoulder.Settings
 {
     public class SecuritySettings
     {

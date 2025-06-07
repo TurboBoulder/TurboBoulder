@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdaWebApplicationTemplate.Data
+namespace TurboBoulder.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {

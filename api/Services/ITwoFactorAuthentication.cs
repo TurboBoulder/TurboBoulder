@@ -1,6 +1,6 @@
-﻿using IdaWebApplicationTemplate.Data;
+﻿using TurboBoulder.Data;
 
-namespace IdaWebApplicationTemplate.Services
+namespace TurboBoulder.Services
 {
     public interface ITwoFactorAuthentication
     {

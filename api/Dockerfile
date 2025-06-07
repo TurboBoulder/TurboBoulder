@@ -7,17 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["IdaWebApplicationTemplate/IdaWebApplicationTemplate.csproj", "IdaWebApplicationTemplate/"]
-COPY ["IdaWebApplicationTemplate.Shared/IdaWebApplicationTemplate.Shared.csproj", "IdaWebApplicationTemplate.Shared/"]
-RUN dotnet restore "IdaWebApplicationTemplate/IdaWebApplicationTemplate.csproj"
+COPY ["api/api.csproj", "api/"]
+COPY ["shared/shared.csproj", "shared/"]
+RUN dotnet restore "api/api.csproj"
 COPY . .
-WORKDIR "/src/IdaWebApplicationTemplate"
-RUN dotnet build "IdaWebApplicationTemplate.csproj" -c Release -o /app/build
+WORKDIR "/src/api"
+RUN dotnet build "api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "IdaWebApplicationTemplate.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "IdaWebApplicationTemplate.dll"]
+ENTRYPOINT ["dotnet", "api.dll"]

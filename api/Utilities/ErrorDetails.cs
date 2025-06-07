@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace IdaWebApplicationTemplate.Utilities
+namespace TurboBoulder.Utilities
 {
     public class ErrorDetails
     {

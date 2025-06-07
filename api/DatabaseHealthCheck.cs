@@ -1,7 +1,7 @@
-﻿using IdaWebApplicationTemplate.Data;
+﻿using TurboBoulder.Data;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace IdaWebApplicationTemplate
+namespace TurboBoulder
 {
     public class DatabaseHealthCheck : IHealthCheck
     {
