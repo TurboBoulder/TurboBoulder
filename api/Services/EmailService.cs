@@ -1,4 +1,4 @@
-﻿namespace IdaWebApplicationTemplate.Services
+﻿namespace TurboBoulder.Services
 {
     public class EmailService : IEmailService
     {

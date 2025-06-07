@@ -1,4 +1,4 @@
-﻿namespace IdaWebApplicationTemplate.Data
+﻿namespace TurboBoulder.Data
 {
     public class UserProfile
     {

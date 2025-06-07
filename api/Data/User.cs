@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace IdaWebApplicationTemplate.Data
+namespace TurboBoulder.Data
 {
     public class User : IdentityUser
     {

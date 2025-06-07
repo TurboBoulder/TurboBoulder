@@ -1,16 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using IdaWebApplicationTemplate.Data;
+using TurboBoulder.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using IdaWebApplicationTemplate;
-using IdaWebApplicationTemplate.Services;
-using IdaWebApplicationTemplate.Settings;
+using TurboBoulder;
+using TurboBoulder.Services;
+using TurboBoulder.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using IdaWebApplicationTemplate.Middleware;
+using TurboBoulder.Middleware;
 using Microsoft.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
 

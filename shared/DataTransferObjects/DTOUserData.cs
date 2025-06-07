@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdaWebApplicationTemplate.Shared.DataTransferObjects
+namespace TurboBoulder.Shared.DataTransferObjects
 {
     public class DTOUserData
     {

@@ -1,14 +1,14 @@
-﻿using IdaWebApplicationTemplate.Data;
-using IdaWebApplicationTemplate.Services;
-using IdaWebApplicationTemplate.Settings;
-using IdaWebApplicationTemplate.Shared.DataTransferObjects;
+﻿using TurboBoulder.Data;
+using TurboBoulder.Services;
+using TurboBoulder.Settings;
+using TurboBoulder.Shared.DataTransferObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace IdaWebApplicationTemplate.Controllers
+namespace TurboBoulder.Controllers
 {
     [Route("api/admin")]
     [Authorize(Roles = "Admin")]
