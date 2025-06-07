@@ -103,10 +103,10 @@ namespace WebTemplateCLI
         private static string InputDBUsername(string baseurl)
         {
             string databaseUsername = SanitizeUsername(AnsiConsole.Ask<string>("Database username: ", "dbuser"));
-            while (baseurl == string.Empty)
+            while (databaseUsername == string.Empty)
             {
                 AnsiConsole.MarkupLine("The username can only consist of [bold yellow]letters[/], [bold yellow]numbers[/], or [bold yellow]underscores[/].");
-                databaseUsername = SanitizeUsername(AnsiConsole.Ask<string>("Database username: ", "dbuser")); ;
+                databaseUsername = SanitizeUsername(AnsiConsole.Ask<string>("Database username: ", "dbuser"));
             }
 
             return databaseUsername;
@@ -301,9 +301,9 @@ namespace WebTemplateCLI
         private static string SanitizeUsername(string input)
         {
             const string Pattern = @"^[a-zA-Z0-9_]+$";
-            string sanitizedInput = Regex.Replace(input, Pattern, string.Empty);
 
-            return sanitizedInput;
+            // If the input matches the pattern, it is valid. Otherwise return an empty string.
+            return Regex.IsMatch(input, Pattern) ? input : string.Empty;
         }
 
         private static string GenerateRandomPassword(int length)
